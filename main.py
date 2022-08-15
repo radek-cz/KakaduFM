@@ -24,6 +24,7 @@ SEARCH_ENGINE3 = "https://www.qwant.com/?q="
 SEARCH_ENGINE4 = "https://www.bing.com/search?q="
 SEARCH_ENGINE5 = "https://www.google.com/search?q="
 SEARCH_ENGINE = SEARCH_ENGINE4
+MAXL_NAME = 24
 
 rb = RadioBrowser()
 # radios = rb.stations()
@@ -63,6 +64,7 @@ class GuiApp:
         self.tmp_stop = 0
 
     def run(self):
+        print('x')
         self.mainwindow.mainloop()
 
     def favorite_station(self):
@@ -80,12 +82,33 @@ class GuiApp:
         meta_list = ['name', 'stationuuid', 'url', 'homepage', 'favicon', 'country', 'countrycode',
                      'language', 'tags', 'bitrate', 'codec', 'votes', 'clickcount']
 
-        print("")
-        for i in meta_list:
-            if radios[self.rid][i]: print(i + ":", radios[self.rid][i])
+        meta_data = {
+            'name': 'label_name',
+            'country': 'label_country',
+            'countrycode': 'label_countrycode',
+            'language': 'label_language',
+            'tags': 'label_tags',
+            'bitrate': 'label_bitrate',
+            'codec': 'label_codec',
+            'votes': 'label_votes',
+            'clickcount':'label_clickcount',
+        }
+
+        for i in meta_data:
+            widget = self.builder.get_object(meta_data[i])
+            txt = radios[self.rid][i]
+            if str(type(txt)) == "<class 'str'>" and len(txt) > MAXL_NAME:
+                txt = txt[:MAXL_NAME] + '...'
+            widget.configure(text=txt)
+
+        widget = self.builder.get_object('label_rid')
+        widget.configure(text=str(self.rid))
+
+        # print("")
+        # for i in meta_list:
+        #     if radios[self.rid][i]: print(i + ":", radios[self.rid][i])
+
         r = rb.click_counter(radios[self.rid]["stationuuid"])
-        # if r["ok"]:
-        #     print("+1 CLICK")
 
         self.fade_down()
         self.media = instance.media_new(self.url)
@@ -96,30 +119,27 @@ class GuiApp:
         self.fade_up()
 
     def play(self):
-        pass
+        self.media = instance.media_new(self.url)
+        player.set_media(self.media)
+        player.audio_set_volume(0)
+        player.play()
+        self.fade_up()
+        self.tmp_stop = 0
 
     def stop(self):
-        if self.tmp_stop == 0:
-            self.fade_down()
-            player.stop()
-            self.button_21['text'] = "Continue"
-            self.tmp_stop = 1
-        else:
-            self.media = instance.media_new(self.url)
-            player.set_media(self.media)
-            player.audio_set_volume(0)
-            player.play()
-            self.fade_up()
-            self.button_21['text'] = "Stop"
-            self.tmp_stop = 0
+        self.fade_down()
+        player.stop()
+        self.tmp_stop = 1
 
     def mute(self):
         if player.is_playing():
             player.audio_toggle_mute()
             if player.audio_get_mute() == 0:
-                self.button_12['text'] = "UnMute"
+                widget = self.builder.get_object('button_mute')
+                widget.configure(text="UnMute")
             else:
-                self.button_12['text'] = "Mute"
+                widget = self.builder.get_object('button_mute')
+                widget.configure(text="Mute")
 
     def prev_station(self):
         pass
@@ -129,6 +149,18 @@ class GuiApp:
 
     def config(self):
         pass
+
+    def stationurl(self):
+        pass
+
+    def nowplaying(self):
+        pass
+
+    def homepage(self):
+        s = radios[self.rid]["homepage"]
+        if s:
+            webbrowser.open(s, new=2)
+        print(player.audio_get_volume())
 
     def fade_down(self):
         v0 = player.audio_get_volume()
@@ -165,7 +197,7 @@ class GuiApp:
         if s:
             webbrowser.open(SEARCH_ENGINE + urllib.parse.quote(s), new=2)
 
-    def button_volinc(self):
+    def vol_up(self):
         v0 = player.audio_get_volume()
         v = v0 + 10
         if v > 100:
@@ -174,7 +206,7 @@ class GuiApp:
             sleep(0.01)
             player.audio_set_volume(i)
 
-    def button_voldec(self):
+    def vol_down(self):
         v0 = player.audio_get_volume()
         v = v0 - 10
         if v < 0:
@@ -182,12 +214,6 @@ class GuiApp:
         for i in range(v0, v - 1, -1):
             sleep(0.01)
             player.audio_set_volume(i)
-
-    def button_homepage(self):
-        s = radios[self.rid]["homepage"]
-        if s:
-            webbrowser.open(s, new=2)
-        print(player.audio_get_volume())
 
     def on_closing():
         if messagebox.askokcancel("Quit", "Do you want to quit?"):

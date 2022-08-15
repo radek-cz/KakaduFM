@@ -30,6 +30,7 @@
             </layout>
             <child>
               <object class="ttk.Label" id="label_icon">
+                <property name="state">disabled</property>
                 <property name="text" translatable="yes">icon</property>
                 <layout manager="pack">
                   <property name="side">top</property>
@@ -38,6 +39,7 @@
             </child>
             <child>
               <object class="ttk.Label" id="label_name">
+                <property name="font">{Times New Roman} 14 {bold}</property>
                 <property name="text" translatable="yes">name</property>
                 <layout manager="pack">
                   <property name="side">top</property>
@@ -45,62 +47,192 @@
               </object>
             </child>
             <child>
-              <object class="ttk.Label" id="label_country">
-                <property name="text" translatable="yes">country</property>
+              <object class="ttk.Frame" id="frame6">
+                <property name="height">200</property>
+                <property name="width">200</property>
+                <layout manager="pack">
+                  <property name="side">top</property>
+                </layout>
+                <child>
+                  <object class="ttk.Label" id="label_country">
+                    <property name="anchor">n</property>
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">country</property>
+                    <layout manager="pack">
+                      <property name="ipadx">1</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label_countrycode">
+                    <property name="anchor">n</property>
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">countrycode</property>
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label_language">
+                    <property name="anchor">n</property>
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">language</property>
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Label" id="label_tags">
+                <property name="text" translatable="yes">tags</property>
                 <layout manager="pack">
                   <property name="side">top</property>
                 </layout>
               </object>
             </child>
             <child>
-              <object class="ttk.Label" id="label_countrycode">
-                <property name="text" translatable="yes">countrycode</property>
+              <object class="ttk.Frame" id="frame8">
+                <property name="height">200</property>
+                <property name="width">200</property>
                 <layout manager="pack">
                   <property name="side">top</property>
                 </layout>
+                <child>
+                  <object class="ttk.Label" id="label_votes">
+                    <property name="text" translatable="yes">votes</property>
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label_clickcount">
+                    <property name="text" translatable="yes">clickcount</property>
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
-              <object class="ttk.Label" id="label_language">
-                <property name="text" translatable="yes">language</property>
+              <object class="ttk.Frame" id="frame7">
+                <property name="height">200</property>
+                <property name="width">200</property>
                 <layout manager="pack">
                   <property name="side">top</property>
                 </layout>
+                <child>
+                  <object class="ttk.Label" id="label_codec">
+                    <property name="anchor">n</property>
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">codec</property>
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label_bitrate">
+                    <property name="anchor">n</property>
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">bitrate</property>
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
-              <object class="ttk.Label" id="label_tag">
-                <property name="text" translatable="yes">tag</property>
+              <object class="ttk.Frame" id="frame9">
+                <property name="height">200</property>
+                <property name="width">200</property>
                 <layout manager="pack">
                   <property name="side">top</property>
                 </layout>
+                <child>
+                  <object class="ttk.Checkbutton" id="checkbutton_favorite">
+                    <property name="command" type="command" cbtype="simple">favorite_station</property>
+                    <property name="state">disabled</property>
+                    <property name="text" translatable="yes">Favorite</property>
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="padx">5</property>
+                      <property name="pady">5</property>
+                      <property name="side">right</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label_rid">
+                    <property name="anchor">n</property>
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">rid</property>
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
-              <object class="ttk.Label" id="label_votes">
-                <property name="text" translatable="yes">votes</property>
+              <object class="ttk.Frame" id="frame5">
+                <property name="height">200</property>
+                <property name="width">200</property>
                 <layout manager="pack">
                   <property name="side">top</property>
                 </layout>
-              </object>
-            </child>
-            <child>
-              <object class="ttk.Label" id="label_clickcount">
-                <property name="text" translatable="yes">clickcount</property>
-                <layout manager="pack">
-                  <property name="side">top</property>
-                </layout>
-              </object>
-            </child>
-            <child>
-              <object class="ttk.Checkbutton" id="checkbutton_favorite">
-                <property name="command" type="command" cbtype="simple">favorite_station</property>
-                <property name="text" translatable="yes">Favorite</property>
-                <layout manager="pack">
-                  <property name="padx">5</property>
-                  <property name="pady">5</property>
-                  <property name="side">top</property>
-                </layout>
+                <child>
+                  <object class="ttk.Button" id="button_homepage">
+                    <property name="command" type="command" cbtype="simple">homepage</property>
+                    <property name="state">disabled</property>
+                    <property name="text" translatable="yes">Homepage</property>
+                    <layout manager="grid">
+                      <property name="column">0</property>
+                      <property name="padx">5</property>
+                      <property name="pady">5</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Button" id="button_nowplaying">
+                    <property name="command" type="command" cbtype="simple">nowplaying</property>
+                    <property name="state">disabled</property>
+                    <property name="text" translatable="yes">Now  playing</property>
+                    <layout manager="grid">
+                      <property name="column">1</property>
+                      <property name="padx">5</property>
+                      <property name="pady">5</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Button" id="button_stationurl">
+                    <property name="command" type="command" cbtype="simple">stationurl</property>
+                    <property name="state">disabled</property>
+                    <property name="text" translatable="yes">Station URL</property>
+                    <layout manager="grid">
+                      <property name="column">2</property>
+                      <property name="padx">5</property>
+                      <property name="pady">5</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
@@ -111,10 +243,14 @@
             <property name="text" translatable="yes">Controll</property>
             <property name="width">200</property>
             <layout manager="pack">
+              <property name="fill">x</property>
               <property name="padx">5</property>
               <property name="pady">5</property>
               <property name="side">bottom</property>
             </layout>
+            <containerlayout manager="grid">
+              <property name="anchor">center</property>
+            </containerlayout>
             <child>
               <object class="ttk.Button" id="button_shuffle">
                 <property name="command" type="command" cbtype="simple">shuffle</property>
@@ -130,6 +266,7 @@
             <child>
               <object class="ttk.Button" id="button_play">
                 <property name="command" type="command" cbtype="simple">play</property>
+                <property name="state">disabled</property>
                 <property name="text" translatable="yes">Play</property>
                 <layout manager="grid">
                   <property name="column">1</property>
@@ -142,6 +279,7 @@
             <child>
               <object class="ttk.Button" id="button_stop">
                 <property name="command" type="command" cbtype="simple">stop</property>
+                <property name="state">disabled</property>
                 <property name="text" translatable="yes">Stop</property>
                 <layout manager="grid">
                   <property name="column">2</property>
@@ -168,6 +306,7 @@
                 <property name="from_">0</property>
                 <property name="length">140</property>
                 <property name="orient">horizontal</property>
+                <property name="state">disabled</property>
                 <property name="to">100</property>
                 <layout manager="grid">
                   <property name="column">1</property>
@@ -203,14 +342,53 @@
               </object>
             </child>
             <child>
-              <object class="ttk.Button" id="button_config">
-                <property name="command" type="command" cbtype="simple">config</property>
-                <property name="text" translatable="yes">Config</property>
+              <object class="ttk.Button" id="button_history">
+                <property name="command" type="command" cbtype="simple">next_station</property>
+                <property name="state">disabled</property>
+                <property name="text" translatable="yes">History</property>
                 <layout manager="grid">
                   <property name="column">2</property>
                   <property name="padx">5</property>
                   <property name="pady">5</property>
                   <property name="row">2</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="button_volup">
+                <property name="command" type="command" cbtype="simple">vol_up</property>
+                <property name="state">normal</property>
+                <property name="text" translatable="yes">Vol +</property>
+                <layout manager="grid">
+                  <property name="column">0</property>
+                  <property name="padx">5</property>
+                  <property name="pady">5</property>
+                  <property name="row">3</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="button_voldown">
+                <property name="command" type="command" cbtype="simple">vol_down</property>
+                <property name="text" translatable="yes">Vol -</property>
+                <layout manager="grid">
+                  <property name="column">1</property>
+                  <property name="padx">5</property>
+                  <property name="pady">5</property>
+                  <property name="row">3</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="button_config">
+                <property name="command" type="command" cbtype="simple">config</property>
+                <property name="state">disabled</property>
+                <property name="text" translatable="yes">Config</property>
+                <layout manager="grid">
+                  <property name="column">2</property>
+                  <property name="padx">5</property>
+                  <property name="pady">5</property>
+                  <property name="row">3</property>
                 </layout>
               </object>
             </child>
@@ -559,6 +737,54 @@
                   <property name="pady">5</property>
                   <property name="side">bottom</property>
                 </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="tk.Toplevel" id="toplevel3">
+    <property name="background">#ff8000</property>
+    <property name="height">200</property>
+    <property name="width">200</property>
+    <child>
+      <object class="ttk.Frame" id="frame10">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="padx">5</property>
+          <property name="pady">5</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="ttk.Labelframe" id="labelframe2">
+            <property name="height">200</property>
+            <property name="text" translatable="yes">Playing history</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="padx">5</property>
+              <property name="pady">5</property>
+              <property name="side">top</property>
+            </layout>
+            <child>
+              <object class="pygubu.builder.widgets.scrollbarhelper" id="scrollbarhelper1">
+                <property name="scrolltype">both</property>
+                <property name="usemousewheel">false</property>
+                <layout manager="pack">
+                  <property name="padx">5</property>
+                  <property name="pady">5</property>
+                  <property name="side">top</property>
+                </layout>
+                <child>
+                  <object class="tk.Text" id="text1">
+                    <property name="height">10</property>
+                    <property name="width">50</property>
+                    <layout manager="pack">
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
