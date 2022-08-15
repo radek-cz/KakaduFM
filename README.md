@@ -1,5 +1,5 @@
 # KakaduFM
-<img align="right" src="https://github.com/morgor/KakaduFM/raw/main/screenshot.png" alt="KakaduFM screenshot">
+<img align="right" src="https://github.com/morgor/KakaduFM/raw/main/screenshot2.png" alt="KakaduFM screenshot">
 
 Another player for internet radio stations, using the database https://www.radio-browser.info/.
 
