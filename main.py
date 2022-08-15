@@ -3,9 +3,11 @@ import random
 import time
 import calendar
 import re
+from io import BytesIO
 from datetime import datetime
 from time import sleep
 from pyradios import RadioBrowser
+from PIL import Image, ImageTk
 # from tkinter import *
 #from tkinter import ttk
 import tkinter as tk
@@ -15,6 +17,7 @@ import webbrowser
 import urllib.parse
 import pathlib
 import pygubu
+import requests
 
 PROJECT_PATH = pathlib.Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "gui.ui"
@@ -144,6 +147,26 @@ class GuiApp:
         widget.insert(0,self.url)
         widget.configure(state="readonly")
 
+        fi = radios[self.rid]["favicon"]
+        widget = self.builder.get_object('label_icon')
+        if fi and (fi.find('.jpg') > -1 or fi.find('.jpeg') > -1 or fi.find('.png') > -1 or fi.find('.ico') > -1):
+            response = requests.get(fi)
+
+            img = Image.open(BytesIO(response.content))
+            size = 300, 300
+            # img.thumbnail(size)
+            img = img.resize(size)
+            favicon = ImageTk.PhotoImage(img)
+
+            widget.configure(image=favicon)
+            widget.image=favicon
+        else:
+            img = Image.open("kakadu.png")
+            favicon = ImageTk.PhotoImage(img)
+            widget.configure(image=favicon)
+            widget.image=favicon
+            pass
+
         # print("")
         # for i in meta_list:
         #     if radios[self.rid][i]: print(i + ":", radios[self.rid][i])
@@ -171,11 +194,16 @@ class GuiApp:
         player.play()
         self.fade_up()
         self.tmp_stop = 0
+        widget = self.builder.get_object('button_stop')
+        widget.configure(state="normal")
+        self.update_info()
 
     def stop(self):
         self.fade_down()
         player.stop()
         self.tmp_stop = 1
+        widget = self.builder.get_object('button_stop')
+        widget.configure(state="disabled")
 
     def mute(self):
         if player.is_playing():
