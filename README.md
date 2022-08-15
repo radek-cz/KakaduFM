@@ -12,7 +12,7 @@ Installation:
 - run treminal/console (cmd.exe or Power Shell)
 - go to directory (use 'cd' command) 'main' (You can rename it)
 
-<h2>Option 1 (global)</h2>
+<b>Option 1 (global)</b>
 
 Download dependences:
 
@@ -22,7 +22,7 @@ Running:
 
     python main.py
 
-<h2>Option 2 (venv)</h2>
+<b>Option 2 (venv)</b>
 
 Download dependences:
 
