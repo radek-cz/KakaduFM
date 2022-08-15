@@ -4,6 +4,8 @@
     <property name="background">#ff8000</property>
     <property name="borderwidth">5</property>
     <property name="height">200</property>
+    <property name="iconbitmap">kakadu_crop.png</property>
+    <property name="iconphoto">kakadu_crop.png</property>
     <property name="minsize">220|320</property>
     <property name="title" translatable="yes">KakaduFM</property>
     <property name="width">200</property>
@@ -19,6 +21,7 @@
         <child>
           <object class="ttk.Labelframe" id="labelframe1">
             <property name="height">200</property>
+            <property name="labelanchor">n</property>
             <property name="text" translatable="yes">Radio station</property>
             <property name="width">200</property>
             <layout manager="pack">
@@ -30,7 +33,7 @@
             </layout>
             <child>
               <object class="ttk.Label" id="label_icon">
-                <property name="state">disabled</property>
+                <property name="image">kakadu.png</property>
                 <property name="text" translatable="yes">icon</property>
                 <layout manager="pack">
                   <property name="side">top</property>
@@ -40,7 +43,7 @@
             <child>
               <object class="ttk.Label" id="label_name">
                 <property name="font">{Times New Roman} 14 {bold}</property>
-                <property name="text" translatable="yes">name</property>
+                <property name="text" translatable="yes">KakaduFM</property>
                 <layout manager="pack">
                   <property name="side">top</property>
                 </layout>
@@ -57,7 +60,6 @@
                   <object class="ttk.Label" id="label_country">
                     <property name="anchor">n</property>
                     <property name="justify">center</property>
-                    <property name="text" translatable="yes">country</property>
                     <layout manager="pack">
                       <property name="ipadx">1</property>
                       <property name="side">left</property>
@@ -68,7 +70,7 @@
                   <object class="ttk.Label" id="label_countrycode">
                     <property name="anchor">n</property>
                     <property name="justify">center</property>
-                    <property name="text" translatable="yes">countrycode</property>
+                    <property name="text" translatable="yes">https://github.com/morgor/KakaduFM</property>
                     <layout manager="pack">
                       <property name="ipadx">10</property>
                       <property name="side">left</property>
@@ -79,7 +81,6 @@
                   <object class="ttk.Label" id="label_language">
                     <property name="anchor">n</property>
                     <property name="justify">center</property>
-                    <property name="text" translatable="yes">language</property>
                     <layout manager="pack">
                       <property name="ipadx">10</property>
                       <property name="side">left</property>
@@ -90,37 +91,9 @@
             </child>
             <child>
               <object class="ttk.Label" id="label_tags">
-                <property name="text" translatable="yes">tags</property>
                 <layout manager="pack">
                   <property name="side">top</property>
                 </layout>
-              </object>
-            </child>
-            <child>
-              <object class="ttk.Frame" id="frame8">
-                <property name="height">200</property>
-                <property name="width">200</property>
-                <layout manager="pack">
-                  <property name="side">top</property>
-                </layout>
-                <child>
-                  <object class="ttk.Label" id="label_votes">
-                    <property name="text" translatable="yes">votes</property>
-                    <layout manager="pack">
-                      <property name="ipadx">10</property>
-                      <property name="side">left</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="ttk.Label" id="label_clickcount">
-                    <property name="text" translatable="yes">clickcount</property>
-                    <layout manager="pack">
-                      <property name="ipadx">10</property>
-                      <property name="side">left</property>
-                    </layout>
-                  </object>
-                </child>
               </object>
             </child>
             <child>
@@ -134,7 +107,7 @@
                   <object class="ttk.Label" id="label_codec">
                     <property name="anchor">n</property>
                     <property name="justify">center</property>
-                    <property name="text" translatable="yes">codec</property>
+                    <property name="text" translatable="yes">Code Jam 2022-08-15</property>
                     <layout manager="pack">
                       <property name="ipadx">10</property>
                       <property name="side">left</property>
@@ -145,7 +118,33 @@
                   <object class="ttk.Label" id="label_bitrate">
                     <property name="anchor">n</property>
                     <property name="justify">center</property>
-                    <property name="text" translatable="yes">bitrate</property>
+                    <property name="text" translatable="yes">Sound &amp; Audio</property>
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Frame" id="frame8">
+                <property name="height">200</property>
+                <property name="width">200</property>
+                <layout manager="pack">
+                  <property name="side">top</property>
+                </layout>
+                <child>
+                  <object class="ttk.Label" id="label_votes">
+                    <property name="text" translatable="yes">PythonSimplified</property>
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label_clickcount">
                     <layout manager="pack">
                       <property name="ipadx">10</property>
                       <property name="side">left</property>
@@ -178,7 +177,6 @@
                   <object class="ttk.Label" id="label_rid">
                     <property name="anchor">n</property>
                     <property name="justify">center</property>
-                    <property name="text" translatable="yes">rid</property>
                     <layout manager="pack">
                       <property name="ipadx">10</property>
                       <property name="side">left</property>
@@ -240,6 +238,7 @@
         <child>
           <object class="ttk.Labelframe" id="labelframe6">
             <property name="height">200</property>
+            <property name="labelanchor">n</property>
             <property name="text" translatable="yes">Controll</property>
             <property name="width">200</property>
             <layout manager="pack">
@@ -308,6 +307,7 @@
                 <property name="orient">horizontal</property>
                 <property name="state">disabled</property>
                 <property name="to">100</property>
+                <property name="variable">int:tmp_vol</property>
                 <layout manager="grid">
                   <property name="column">1</property>
                   <property name="columnspan">2</property>
@@ -400,6 +400,8 @@
   <object class="tk.Toplevel" id="toplevel2">
     <property name="background">#ff8000</property>
     <property name="height">200</property>
+    <property name="iconbitmap">kakadu_crop.png</property>
+    <property name="iconphoto">kakadu_crop.png</property>
     <property name="width">200</property>
     <child>
       <object class="ttk.Frame" id="frame2">
@@ -747,6 +749,8 @@
   <object class="tk.Toplevel" id="toplevel3">
     <property name="background">#ff8000</property>
     <property name="height">200</property>
+    <property name="iconbitmap">kakadu_crop.png</property>
+    <property name="iconphoto">kakadu_crop.png</property>
     <property name="width">200</property>
     <child>
       <object class="ttk.Frame" id="frame10">

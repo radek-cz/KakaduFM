@@ -2,6 +2,7 @@ import vlc
 import random
 import time
 import calendar
+import re
 from datetime import datetime
 from time import sleep
 from pyradios import RadioBrowser
@@ -29,7 +30,26 @@ MAXL_NAME = 24
 rb = RadioBrowser()
 # radios = rb.stations()
 radios = rb.search(countrycode="PL")
-print(len(radios), "radios downloaded.")
+
+# FIX some .m3u and .pls not playing on vlc.py
+try:
+    for i in range(len(radios)):
+        url = radios[i]["url"]
+        if url.find('.m3u') > -1 or url.find('.pls') > -1:
+            radios.pop(i)
+except:
+    pass
+
+# Deduplicate
+url0 = radios[0]["url"]
+try:
+    for i in range(1, len(radios)):
+        url = radios[i]["url"]
+        if url == url0:
+            radios.pop(i)
+        url0 = radios[i]["url"]
+except:
+    pass
 
 instance = vlc.Instance('--input-repeat=-1', '--fullscreen')
 player = instance.media_player_new()
@@ -64,21 +84,12 @@ class GuiApp:
         self.tmp_stop = 0
 
     def run(self):
-        print('x')
         self.mainwindow.mainloop()
 
     def favorite_station(self):
         pass
 
-    def shuffle(self):
-        self.rid = random.randrange(0, len(radios))
-        self.url = radios[self.rid]["url"]
-
-        # FIX .m3u and .pls not playing on vlc.py
-        while self.url.find('.m3u') > -1 or self.url.find('.pls') > -1:
-            self.rid = random.randrange(0, len(radios))
-            self.url = radios[self.rid]["url"]
-
+    def update_info(self):
         meta_list = ['name', 'stationuuid', 'url', 'homepage', 'favicon', 'country', 'countrycode',
                      'language', 'tags', 'bitrate', 'codec', 'votes', 'clickcount']
 
@@ -91,14 +102,19 @@ class GuiApp:
             'bitrate': 'label_bitrate',
             'codec': 'label_codec',
             'votes': 'label_votes',
-            'clickcount':'label_clickcount',
+            'clickcount': 'label_clickcount',
         }
 
         for i in meta_data:
             widget = self.builder.get_object(meta_data[i])
             txt = radios[self.rid][i]
-            if str(type(txt)) == "<class 'str'>" and len(txt) > MAXL_NAME:
+            if str(type(txt)) == "<class 'str'>":
+                txt = txt.strip()
+                txt = re.sub(r"[\n\t]*", "", txt)
+            if str(type(txt)) == "<class 'str'>" and len(txt) > MAXL_NAME and i == 'name':
                 txt = txt[:MAXL_NAME] + '...'
+            if str(type(txt)) == "<class 'str'>" and len(txt) > (2*MAXL_NAME) and i == 'tags':
+                txt = txt[:(2*MAXL_NAME)] + '...'
             widget.configure(text=txt)
 
         widget = self.builder.get_object('label_rid')
@@ -107,6 +123,12 @@ class GuiApp:
         # print("")
         # for i in meta_list:
         #     if radios[self.rid][i]: print(i + ":", radios[self.rid][i])
+
+    def shuffle(self):
+        self.rid = random.randrange(0, len(radios))
+        self.url = radios[self.rid]["url"]
+
+        self.update_info()
 
         r = rb.click_counter(radios[self.rid]["stationuuid"])
 
@@ -142,10 +164,42 @@ class GuiApp:
                 widget.configure(text="Mute")
 
     def prev_station(self):
-        pass
+        if self.rid > 0:
+            self.rid -= 1
+        else:
+            self.rid = len(radios) - 1
+        self.url = radios[self.rid]["url"]
+
+        self.update_info()
+
+        r = rb.click_counter(radios[self.rid]["stationuuid"])
+
+        self.fade_down()
+        self.media = instance.media_new(self.url)
+        player.set_media(self.media)
+        player.audio_set_volume(0)
+        # self.tmp_vol = 100
+        player.play()
+        self.fade_up()
 
     def next_station(self):
-        pass
+        if self.rid < len(radios) - 1:
+            self.rid += 1
+        else:
+            self.rid = 0
+        self.url = radios[self.rid]["url"]
+
+        self.update_info()
+
+        r = rb.click_counter(radios[self.rid]["stationuuid"])
+
+        self.fade_down()
+        self.media = instance.media_new(self.url)
+        player.set_media(self.media)
+        player.audio_set_volume(0)
+        # self.tmp_vol = 100
+        player.play()
+        self.fade_up()
 
     def config(self):
         pass
@@ -160,7 +214,6 @@ class GuiApp:
         s = radios[self.rid]["homepage"]
         if s:
             webbrowser.open(s, new=2)
-        print(player.audio_get_volume())
 
     def fade_down(self):
         v0 = player.audio_get_volume()
