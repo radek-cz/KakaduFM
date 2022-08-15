@@ -1,5 +1,5 @@
 # KakaduFM
-<img align="right" src="https://github.com/morgor/KakaduFM/raw/main/screenshot2.png" alt="KakaduFM screenshot">
+<img align="right" src="https://github.com/morgor/KakaduFM/raw/main/screenshot_1.png" alt="KakaduFM screenshot 1">
 
 Another player for internet radio stations, using the database https://www.radio-browser.info/.
 
@@ -18,17 +18,6 @@ Download dependences:
 
 Running:
 
-    python main.py
+    python KakaduFM.pyw
 
-<b>or</b>
-
-Download dependences:
-
-    python -m venv venv
-    venv\Scripts\activate.bat
-    pip install -r requirements.txt
-
-Running:
-
-    venv\Scripts\activate.bat
-    python main.py
+<img align="right" src="https://github.com/morgor/KakaduFM/raw/main/screenshot_2.png" alt="KakaduFM screenshot 2">
