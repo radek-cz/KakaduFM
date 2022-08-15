@@ -63,6 +63,12 @@ class GuiApp:
         builder.add_from_file(PROJECT_UI)
         # Main widget
         self.mainwindow = builder.get_object("toplevel1", master)
+
+        self.dialog1 = builder.get_object("dialog1", self.mainwindow)
+        self.dialog2 = builder.get_object("dialog2", self.mainwindow)
+        # self.stations = builder.get_object("toplevel2", self.mainwindow)
+        # self.history = builder.get_object("toplevel3", self.mainwindow)
+
         builder.connect_callbacks(self)
 
         # CENTER WINDOW
@@ -119,6 +125,24 @@ class GuiApp:
 
         widget = self.builder.get_object('label_rid')
         widget.configure(text=str(self.rid))
+
+        widget = self.builder.get_object('button_homepage')
+        if radios[self.rid]['homepage']:
+            widget.configure(state="normal")
+        else:
+            widget.configure(state="disabled")
+
+        widget = self.builder.get_object('button_nowplaying')
+        if self.media.get_meta(12):
+            widget.configure(state="normal")
+        else:
+            widget.configure(state="disabled")
+
+        widget = self.builder.get_object('entry_dialogbox')
+        widget.configure(state="normal")
+        widget.delete (0, last=len(widget.get()))
+        widget.insert(0,self.url)
+        widget.configure(state="readonly")
 
         # print("")
         # for i in meta_list:
@@ -205,10 +229,17 @@ class GuiApp:
         pass
 
     def stationurl(self):
-        pass
+        self.dialog1.run()
 
     def nowplaying(self):
-        pass
+        song = self.media.get_meta(12)
+        if song:
+            widget = self.builder.get_object('entry_song')
+            widget.configure(state="normal")
+            widget.delete (0, last=len(widget.get()))
+            widget.insert(0,song)
+            widget.configure(state="readonly")
+            self.dialog2.run()
 
     def homepage(self):
         s = radios[self.rid]["homepage"]
@@ -245,7 +276,7 @@ class GuiApp:
             print(str_date_time, s)
             self.tmp_title = s
 
-    def button_search(self):
+    def search_song(self):
         s = self.media.get_meta(12)
         if s:
             webbrowser.open(SEARCH_ENGINE + urllib.parse.quote(s), new=2)
@@ -281,6 +312,11 @@ class GuiApp:
         self.fade_down()
         player.stop()
 
+    def clear_filterlist(self):
+        pass
+
+    def add_filter(self):
+        pass
 
 if __name__ == "__main__":
     app = GuiApp()
