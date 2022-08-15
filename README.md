@@ -15,6 +15,7 @@ Installation:
 and download dependences:
 
     python -m venv venv
+    venv\Scripts\activate.bat
     pip install -r requirements.txt
 
 Running:
