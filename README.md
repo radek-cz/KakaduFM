@@ -7,10 +7,11 @@ Requirements:
 - Python 3.10+ https://www.python.org/downloads/
 
 Installation:
-- download https://github.com/morgor/KakaduFM/archive/refs/heads/main.zip
-- unpack
-- run reminal/console (cmd or Power Shell)
-- go to directory 'main' (You can rename it) - use 'cd' command
+- download and unpack https://github.com/morgor/KakaduFM/archive/refs/heads/main.zip
+- run treminal/console (cmd.exe or Power Shell)
+- go to directory (use 'cd' command) 'main' (You can rename it)
+
+and download dependences:
 
     python -m venv venv
     pip install -r requirements.txt
