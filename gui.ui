@@ -303,24 +303,24 @@
                 <property name="command" type="command" cbtype="simple">mute</property>
                 <property name="text" translatable="yes">Mute</property>
                 <layout manager="grid">
-                  <property name="column">0</property>
+                  <property name="column">3</property>
                   <property name="padx">5</property>
                   <property name="pady">5</property>
-                  <property name="row">1</property>
+                  <property name="row">0</property>
                 </layout>
               </object>
             </child>
             <child>
               <object class="ttk.Scale" id="scale_vol">
                 <property name="from_">0</property>
-                <property name="length">140</property>
+                <property name="length">290</property>
                 <property name="orient">horizontal</property>
                 <property name="state">disabled</property>
                 <property name="to">100</property>
                 <property name="variable">int:tmp_vol</property>
                 <layout manager="grid">
-                  <property name="column">1</property>
-                  <property name="columnspan">2</property>
+                  <property name="column">0</property>
+                  <property name="columnspan">4</property>
                   <property name="padx">5</property>
                   <property name="pady">5</property>
                   <property name="row">1</property>
@@ -354,13 +354,12 @@
             <child>
               <object class="ttk.Button" id="button_history">
                 <property name="command" type="command" cbtype="simple">next_station</property>
-                <property name="state">disabled</property>
                 <property name="text" translatable="yes">History</property>
                 <layout manager="grid">
                   <property name="column">2</property>
                   <property name="padx">5</property>
                   <property name="pady">5</property>
-                  <property name="row">2</property>
+                  <property name="row">3</property>
                 </layout>
               </object>
             </child>
@@ -370,10 +369,10 @@
                 <property name="state">normal</property>
                 <property name="text" translatable="yes">Vol +</property>
                 <layout manager="grid">
-                  <property name="column">0</property>
+                  <property name="column">2</property>
                   <property name="padx">5</property>
                   <property name="pady">5</property>
-                  <property name="row">3</property>
+                  <property name="row">2</property>
                 </layout>
               </object>
             </child>
@@ -382,10 +381,10 @@
                 <property name="command" type="command" cbtype="simple">vol_down</property>
                 <property name="text" translatable="yes">Vol -</property>
                 <layout manager="grid">
-                  <property name="column">1</property>
+                  <property name="column">3</property>
                   <property name="padx">5</property>
                   <property name="pady">5</property>
-                  <property name="row">3</property>
+                  <property name="row">2</property>
                 </layout>
               </object>
             </child>
@@ -395,7 +394,7 @@
                 <property name="state">disabled</property>
                 <property name="text" translatable="yes">Config</property>
                 <layout manager="grid">
-                  <property name="column">2</property>
+                  <property name="column">3</property>
                   <property name="padx">5</property>
                   <property name="pady">5</property>
                   <property name="row">3</property>

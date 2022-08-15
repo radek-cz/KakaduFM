@@ -92,6 +92,24 @@ class GuiApp:
         self.tmp_vol = 100
         self.tmp_stop = 0
 
+        # center window on screen after creation
+        self._first_init = True
+        self.mainwindow.bind("<Map>", self.center_window)
+
+        # Connect Delete event to toplevel window
+        self.mainwindow.protocol("WM_DELETE_WINDOW", self.app_quit)
+
+    def center_window(self, event):
+        if self._first_init:
+            toplevel = self.mainwindow
+            height = toplevel.winfo_height()
+            width = toplevel.winfo_width()
+            x_coord = int(toplevel.winfo_screenwidth() / 2 - width / 2)
+            y_coord = int(toplevel.winfo_screenheight() / 2 - height / 2)
+            geom = f"{width}x{height}+{x_coord}+{y_coord}"
+            toplevel.geometry(geom)
+            self._first_init = False
+
     def run(self):
         self.mainwindow.mainloop()
 
@@ -196,6 +214,8 @@ class GuiApp:
         self.tmp_stop = 0
         widget = self.builder.get_object('button_stop')
         widget.configure(state="normal")
+        widget = self.builder.get_object('button_play')
+        widget.configure(state="disabled")
         self.update_info()
 
     def stop(self):
@@ -204,6 +224,8 @@ class GuiApp:
         self.tmp_stop = 1
         widget = self.builder.get_object('button_stop')
         widget.configure(state="disabled")
+        widget = self.builder.get_object('button_play')
+        widget.configure(state="normal")
 
     def mute(self):
         if player.is_playing():
@@ -336,9 +358,10 @@ class GuiApp:
         app.button_info()
         root.after(1000, task)  # reschedule event in 2 seconds
 
-    def app_quit(self):
+    def app_quit(self, event=None):
         self.fade_down()
         player.stop()
+        self.mainwindow.destroy()
 
     def clear_filterlist(self):
         pass
