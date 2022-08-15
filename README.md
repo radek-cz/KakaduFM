@@ -12,7 +12,19 @@ Installation:
 - run treminal/console (cmd.exe or Power Shell)
 - go to directory (use 'cd' command) 'main' (You can rename it)
 
-and download dependences:
+<h2>Option 1 (global)</h2>
+
+Download dependences:
+
+    pip install -r requirements.txt
+
+Running:
+
+    python main.py
+
+<h2>Option 2 (venv)</h2>
+
+Download dependences:
 
     python -m venv venv
     venv\Scripts\activate.bat
