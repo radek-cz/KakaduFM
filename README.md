@@ -12,8 +12,6 @@ Installation:
 - run treminal/console (cmd.exe or Power Shell)
 - go to directory (use 'cd' command) 'main' (You can rename it)
 
-<b>Option 1 (global)</b>
-
 Download dependences:
 
     pip install -r requirements.txt
@@ -22,7 +20,7 @@ Running:
 
     python main.py
 
-<b>Option 2 (venv)</b>
+<b>or</b>
 
 Download dependences:
 
