@@ -8,17 +8,14 @@ from datetime import datetime
 from time import sleep
 from pyradios import RadioBrowser
 from PIL import Image, ImageTk
-# from tkinter import *
-#from tkinter import ttk
 import tkinter as tk
-# import tkinter.font as tk_font
-# from tkinter import messagebox
 import webbrowser
 import urllib.parse
 import pathlib
 import pygubu
 import requests
 
+ISO_COUNTRY_CODE = "PL"
 PROJECT_PATH = pathlib.Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "gui.ui"
 VER_TK = tk.Tcl().eval('info patchlevel')
@@ -28,11 +25,11 @@ SEARCH_ENGINE3 = "https://www.qwant.com/?q="
 SEARCH_ENGINE4 = "https://www.bing.com/search?q="
 SEARCH_ENGINE5 = "https://www.google.com/search?q="
 SEARCH_ENGINE = SEARCH_ENGINE4
-MAXL_NAME = 24
+MAXL_NAME = 30
 
 rb = RadioBrowser()
 # radios = rb.stations()
-radios = rb.search(countrycode="PL")
+radios = rb.search(countrycode=ISO_COUNTRY_CODE)
 
 # FIX some .m3u and .pls not playing on vlc.py
 try:
@@ -69,28 +66,16 @@ class GuiApp:
 
         self.dialog1 = builder.get_object("dialog1", self.mainwindow)
         self.dialog2 = builder.get_object("dialog2", self.mainwindow)
-        # self.stations = builder.get_object("toplevel2", self.mainwindow)
-        # self.history = builder.get_object("toplevel3", self.mainwindow)
+        self.stations = builder.get_object("dialog_stations", self.mainwindow)
+        self.history = builder.get_object("dialog_history", self.mainwindow)
 
         builder.connect_callbacks(self)
-
-        # CENTER WINDOW
-        # screenwidth = self.mainwindow.winfo_screenwidth()
-        # screenheight = self.mainwindow.winfo_screenheight()
-        # alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
-        # # root.geometry(alignstr)
-        # self.mainwindow.geometry(alignstr)
-
-        # self.mainwindow.protocol("WM_DELETE_WINDOW", on_closing)
-        #
-        # self.mainwindow.after(1000, task)
 
         self.rid = 0
         self.url = radios[self.rid]["url"]
         self.media = instance.media_new(self.url)
         self.tmp_title = ''
         self.tmp_vol = 100
-        self.tmp_stop = 0
 
         # center window on screen after creation
         self._first_init = True
@@ -98,6 +83,11 @@ class GuiApp:
 
         # Connect Delete event to toplevel window
         self.mainwindow.protocol("WM_DELETE_WINDOW", self.app_quit)
+
+        self.mainwindow.after(1000, self.task)
+
+        widget = self.builder.get_object('label_rid')
+        widget.configure(text=str(len(radios)) + " stations")
 
     def center_window(self, event):
         if self._first_init:
@@ -142,10 +132,13 @@ class GuiApp:
                 txt = txt[:MAXL_NAME] + '...'
             if str(type(txt)) == "<class 'str'>" and len(txt) > (2*MAXL_NAME) and i == 'tags':
                 txt = txt[:(2*MAXL_NAME)] + '...'
+            if i != 'name':
+                txt = i + ": " + str(txt)
             widget.configure(text=txt)
 
         widget = self.builder.get_object('label_rid')
-        widget.configure(text=str(self.rid))
+        txt = "RadioID: " + str(self.rid)
+        widget.configure(text=txt)
 
         widget = self.builder.get_object('button_homepage')
         if radios[self.rid]['homepage']:
@@ -153,11 +146,11 @@ class GuiApp:
         else:
             widget.configure(state="disabled")
 
-        widget = self.builder.get_object('button_nowplaying')
-        if self.media.get_meta(12):
-            widget.configure(state="normal")
-        else:
-            widget.configure(state="disabled")
+        # widget = self.builder.get_object('button_nowplaying')
+        # if self.media.get_meta(12):
+        #     widget.configure(state="normal")
+        # else:
+        #     widget.configure(state="disabled")
 
         widget = self.builder.get_object('entry_dialogbox')
         widget.configure(state="normal")
@@ -205,13 +198,17 @@ class GuiApp:
         player.play()
         self.fade_up()
 
+        widget = self.builder.get_object('button_stop')
+        widget.configure(state="normal")
+        widget = self.builder.get_object('button_play')
+        widget.configure(state="disabled")
+
     def play(self):
         self.media = instance.media_new(self.url)
         player.set_media(self.media)
         player.audio_set_volume(0)
         player.play()
         self.fade_up()
-        self.tmp_stop = 0
         widget = self.builder.get_object('button_stop')
         widget.configure(state="normal")
         widget = self.builder.get_object('button_play')
@@ -221,7 +218,6 @@ class GuiApp:
     def stop(self):
         self.fade_down()
         player.stop()
-        self.tmp_stop = 1
         widget = self.builder.get_object('button_stop')
         widget.configure(state="disabled")
         widget = self.builder.get_object('button_play')
@@ -252,9 +248,12 @@ class GuiApp:
         self.media = instance.media_new(self.url)
         player.set_media(self.media)
         player.audio_set_volume(0)
-        # self.tmp_vol = 100
         player.play()
         self.fade_up()
+        widget = self.builder.get_object('button_stop')
+        widget.configure(state="normal")
+        widget = self.builder.get_object('button_play')
+        widget.configure(state="disabled")
 
     def next_station(self):
         if self.rid < len(radios) - 1:
@@ -271,11 +270,68 @@ class GuiApp:
         self.media = instance.media_new(self.url)
         player.set_media(self.media)
         player.audio_set_volume(0)
+        player.play()
+        self.fade_up()
+        widget = self.builder.get_object('button_stop')
+        widget.configure(state="normal")
+        widget = self.builder.get_object('button_play')
+        widget.configure(state="disabled")
+
+    def config(self):
+        self.stations.run()
+        widget = self.builder.get_object('treeview1')
+        for i in range(len(radios)):
+            column_values = (
+                radios[i]["countrycode"],
+                radios[i]["tags"],
+                radios[i]["stationuuid"]
+            )
+            parent = ""
+            widget.insert(parent, tk.END, text=radios[i]["name"], values=column_values)
+
+    def on_row_select(self, event=None):
+        widget = self.builder.get_object('treeview1')
+        sel = widget.selection()
+        if sel:
+            item = sel[0]
+            values = widget.item(item)
+            # print(values['text'])
+            # print(values['values'][0])
+            # print(values['values'][2])
+            self.play_uuid(values['values'][2])
+
+    def play_uuid(self, radio_uuid):
+        for i in range(len(radios)):
+            stationuuid = radios[i]["stationuuid"]
+            if stationuuid == radio_uuid:
+                self.rid = i
+                break
+
+        self.url = radios[self.rid]["url"]
+
+        self.update_info()
+
+        r = rb.click_counter(radios[self.rid]["stationuuid"])
+
+        self.fade_down()
+        self.media = instance.media_new(self.url)
+        player.set_media(self.media)
+        player.audio_set_volume(0)
         # self.tmp_vol = 100
         player.play()
         self.fade_up()
 
-    def config(self):
+        widget = self.builder.get_object('button_stop')
+        widget.configure(state="normal")
+        widget = self.builder.get_object('button_play')
+        widget.configure(state="disabled")
+
+    def clear_all(self, event=None):
+        widget = self.builder.get_object('treeview1')
+        for item in widget.get_children():
+            widget.delete(item)
+
+    def add_filter(self):
         pass
 
     def stationurl(self):
@@ -297,34 +353,24 @@ class GuiApp:
             webbrowser.open(s, new=2)
 
     def fade_down(self):
-        v0 = player.audio_get_volume()
-        self.tmp_vol = v0
-        v1 = 0
-        for v in range(v0, v1 - 1, -2):
-            sleep(0.01)
-            if v < 0:
-                v = 0
-                break
+        scale = self.builder.get_object("scale_vol")
+        v1 = player.audio_get_volume()
+        self.tmp_vol = v1
+        for v in range(v1, -1, -2):
             player.audio_set_volume(v)
+            sleep(0.01)
+        player.audio_set_volume(0)
+        scale.set(0)
 
     def fade_up(self):
-        v0 = player.audio_get_volume()
+        scale = self.builder.get_object("scale_vol")
+        v0 = 0
         v1 = self.tmp_vol
-        self.tmp_vol = v0
-        for v in range(v0, v1 + 2):
-            sleep(0.01)
-            if v > 100:
-                v = 100
-                break
+        for v in range(0, v1, +2):
             player.audio_set_volume(v)
-
-    def button_info(self):
-        s = self.media.get_meta(12)
-        if s and self.tmp_title != s:
-            date_time = datetime.fromtimestamp(calendar.timegm(time.gmtime()))
-            str_date_time = date_time.strftime("%Y-%m-%d %H:%M:%S >> ")
-            print(str_date_time, s)
-            self.tmp_title = s
+            sleep(0.01)
+        player.audio_set_volume(v1)
+        scale.set(v1)
 
     def search_song(self):
         s = self.media.get_meta(12)
@@ -332,6 +378,7 @@ class GuiApp:
             webbrowser.open(SEARCH_ENGINE + urllib.parse.quote(s), new=2)
 
     def vol_up(self):
+        scale = self.builder.get_object("scale_vol")
         v0 = player.audio_get_volume()
         v = v0 + 10
         if v > 100:
@@ -339,8 +386,11 @@ class GuiApp:
         for i in range(v0, v + 1):
             sleep(0.01)
             player.audio_set_volume(i)
+            scale.set(i)
+        self.tmp_vol = player.audio_get_volume()
 
     def vol_down(self):
+        scale = self.builder.get_object("scale_vol")
         v0 = player.audio_get_volume()
         v = v0 - 10
         if v < 0:
@@ -348,26 +398,44 @@ class GuiApp:
         for i in range(v0, v - 1, -1):
             sleep(0.01)
             player.audio_set_volume(i)
+            scale.set(i)
+        self.tmp_vol = player.audio_get_volume()
 
-    def on_closing():
+    def scale_volume(self, event):
+        # print(int(float(event)))
+        scale = self.builder.get_object("scale_vol")
+        player.audio_set_volume(int(scale.get()))
+
+    def song_history(self):
+        self.history.run()
+
+    def on_closing(self):
         if messagebox.askokcancel("Quit", "Do you want to quit?"):
             app.app_quit()
             root.destroy()
 
-    def task():
-        app.button_info()
-        root.after(1000, task)  # reschedule event in 2 seconds
+    def task(self):
+        s = self.media.get_meta(12)
+        if s and self.tmp_title != s and s != '':
+            date_time = datetime.fromtimestamp(calendar.timegm(time.gmtime()))
+            str_date_time = date_time.strftime("%Y-%m-%d %H:%M:%S >> ")
+            # print(str_date_time, s)
+            widget = self.builder.get_object('text_history')
+            line = str_date_time + s + '\n'
+            widget.configure(state="normal")
+            widget.insert(tk.END, line)
+            widget.configure(state="disabled")
+            self.tmp_title = s
+        widget = self.builder.get_object('label_volume')
+        txt_vol = "Vol: " + str(player.audio_get_volume())
+        widget.configure(text=txt_vol)
+        self.mainwindow.after(1000, self.task)  # reschedule event in 2 seconds
 
     def app_quit(self, event=None):
         self.fade_down()
         player.stop()
         self.mainwindow.destroy()
 
-    def clear_filterlist(self):
-        pass
-
-    def add_filter(self):
-        pass
 
 if __name__ == "__main__":
     app = GuiApp()
