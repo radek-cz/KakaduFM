@@ -2,7 +2,7 @@
 <interface version="1.2">
   <object class="tk.Toplevel" id="toplevel1">
     <property name="background">#d8d043</property>
-    <property name="borderwidth">8</property>
+    <property name="borderwidth">9</property>
     <property name="iconbitmap">kakadu_crop.png</property>
     <property name="iconphoto">kakadu_crop.png</property>
     <property name="resizable">none</property>
@@ -446,7 +446,6 @@
     </child>
   </object>
   <object class="pygubu.builder.widgets.dialog" id="dialog1">
-    <property name="background">#ff8000</property>
     <property name="height">100</property>
     <property name="resizable">none</property>
     <property name="title" translatable="yes">Station URL</property>
@@ -475,7 +474,6 @@
     </child>
   </object>
   <object class="pygubu.builder.widgets.dialog" id="dialog2">
-    <property name="background">#ff8000</property>
     <property name="height">100</property>
     <property name="resizable">none</property>
     <property name="title" translatable="yes">Now playing</property>
@@ -533,7 +531,6 @@
     </child>
   </object>
   <object class="pygubu.builder.widgets.dialog" id="dialog_stations">
-    <property name="background">#ff8000</property>
     <property name="height">100</property>
     <property name="minsize">800|600</property>
     <property name="width">200</property>
@@ -676,7 +673,6 @@
     </child>
   </object>
   <object class="pygubu.builder.widgets.dialog" id="dialog_history">
-    <property name="background">#ff8000</property>
     <property name="height">100</property>
     <property name="title" translatable="yes">KakaduFM - playing history</property>
     <property name="width">200</property>
@@ -735,7 +731,6 @@
     </child>
   </object>
   <object class="pygubu.builder.widgets.dialog" id="dialog_about">
-    <property name="background">#ff8000</property>
     <property name="height">100</property>
     <property name="modal">true</property>
     <property name="resizable">none</property>
