@@ -18,7 +18,7 @@ Associated projects:
 Installation:
 - download and unpack https://github.com/morgor/KakaduFM/archive/refs/heads/main.zip
 - run treminal/console (cmd.exe or Power Shell)
-- go to directory (use 'cd' command) 'main' (You can rename it)
+- go to directory (use 'cd' command) 'KakaduFM-main' (You can rename it)
 
 Download dependences:
 
