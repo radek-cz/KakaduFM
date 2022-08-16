@@ -1,7 +1,7 @@
 # KakaduFM
 <img align="right" src="https://github.com/morgor/KakaduFM/raw/main/img/screenshot_1.png" alt="KakaduFM screenshot 1">
 
-Another player for internet radio stations, using the database https://www.radio-browser.info/.
+Another player for internet radio stations, using the database https://www.radio-browser.info.
 
 Requirements:
 - Windows 10 (tested)
@@ -10,8 +10,9 @@ Requirements:
 Associated projects:
 - https://www.radio-browser.info
 - https://pypi.org/project/python-vlc
-- https://github.com/andreztz/pyradios
+- https://pypi.org/project/pyradios
 - https://pypi.org/project/Pillow
+- https://pypi.org/project/colorthief
 - https://pypi.org/project/requests
 
 Installation:
