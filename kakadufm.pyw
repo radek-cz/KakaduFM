@@ -134,6 +134,10 @@ class GuiApp:
                 txt = txt[:MAXL_NAME] + '...'
             if str(type(txt)) == "<class 'str'>" and len(txt) > (2*MAXL_NAME) and i == 'tags':
                 txt = txt[:(2*MAXL_NAME)] + '...'
+            if i == 'bitrate' and str(txt) == '0':
+                txt = 'N/A'
+            if str(txt) == '' and i != 'tags':
+                txt = 'N/A'
             if i != 'name' and i != 'tags':
                 txt = i[:1].upper() + i[1:] + ": " + str(txt)
             widget.configure(text=txt)
