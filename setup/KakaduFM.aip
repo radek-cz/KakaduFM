@@ -27,7 +27,7 @@ Windows Server 2016=1
 Windows Server 2019=1
 Windows Server 2022=1
 SystemType=0
-Internet=0
+Internet=1
 CloseApp=0
 CloseAppFile=File.exe
 CloseAppText=App Name
@@ -142,8 +142,8 @@ CustomActionCommand=<WebSite>
 CustomActionChecked=0
 CustomActionAdmin=0
 TotalFiles=2
-SourceDirFiles=9
-SourceDirSize=381077
+SourceDirFiles=12
+SourceDirSize=484057
 
 [GUI]
 FontName=Verdana
@@ -159,8 +159,8 @@ LogoTransparent=0
 1=C:\PYTHON\projects\KakaduFM\start_kakadufm.bat?<InstallDir>\start_kakadufm.bat?1?1
 
 [Shortcuts]
-0=<Desktop>*?Kakadu FM*?<InstallDir>\start_kakadufm.bat*?*?*?<InstallDir>*?<InstallDir>\ui\kakadu_crop.png*?0*?Normal*?No
-1=<ProgramsMenu>*?Kakadu FM*?<InstallDir>\start_kakadufm.bat*?*?*?<InstallDir>*?<InstallDir>\ui\kakadu_crop.png*?0*?Normal*?No
+0=<Desktop>*?Kakadu FM*?<InstallDir>\start_kakadufm.bat*?*?*?<InstallDir>*?<InstallDir>\ui\radio_6876.ico*?0*?Normal*?No
+1=<ProgramsMenu>*?Kakadu FM*?<InstallDir>\start_kakadufm.bat*?*?*?<InstallDir>*?<InstallDir>\ui\radio_6876.ico*?0*?Normal*?No
 
 [FileOptions]
 0=.idea\?D
