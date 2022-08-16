@@ -8,6 +8,7 @@ from datetime import datetime
 from time import sleep
 from pyradios import RadioBrowser
 from PIL import Image, ImageTk
+from colorthief import ColorThief
 from tkinter import messagebox
 import tkinter as tk
 import webbrowser
@@ -16,9 +17,11 @@ import pathlib
 import pygubu
 import requests
 
+
 ISO_COUNTRY_CODE = "PL"
 PROJECT_PATH = pathlib.Path(__file__).parent
-PROJECT_UI = PROJECT_PATH / "gui.ui"
+PROJECT_UI = PROJECT_PATH / "ui" / "gui.ui"
+
 VER_TK = tk.Tcl().eval('info patchlevel')
 SEARCH_ENGINE1 = "https://kagi.com/search?q="
 SEARCH_ENGINE2 = "https://duckduckgo.com/?q="
@@ -26,11 +29,11 @@ SEARCH_ENGINE3 = "https://www.qwant.com/?q="
 SEARCH_ENGINE4 = "https://www.bing.com/search?q="
 SEARCH_ENGINE5 = "https://www.google.com/search?q="
 SEARCH_ENGINE = SEARCH_ENGINE4
-MAXL_NAME = 30
+MAXL_NAME = 26
 
 rb = RadioBrowser()
-# radios = rb.stations()
-radios = rb.search(countrycode=ISO_COUNTRY_CODE)
+radios = rb.stations()
+# radios = rb.search(countrycode=ISO_COUNTRY_CODE)
 
 # FIX some .m3u and .pls not playing on vlc.py
 try:
@@ -105,9 +108,6 @@ class GuiApp:
     def run(self):
         self.mainwindow.mainloop()
 
-    def favorite_station(self):
-        pass
-
     def update_info(self):
         meta_list = ['name', 'stationuuid', 'url', 'homepage', 'favicon', 'country', 'countrycode',
                      'language', 'tags', 'bitrate', 'codec', 'votes', 'clickcount']
@@ -164,11 +164,9 @@ class GuiApp:
         widget.insert(0,self.url)
         widget.configure(state="readonly")
 
-        fi = radios[self.rid]["favicon"]
-        widget = self.builder.get_object('label_icon')
-
+        fi_url = radios[self.rid]["favicon"]
         try:
-            response = requests.get(fi)
+            response = requests.get(fi_url)
 
             img = Image.open(BytesIO(response.content))
             size = 300, 300
@@ -176,13 +174,26 @@ class GuiApp:
             img = img.resize(size)
             favicon = ImageTk.PhotoImage(img)
 
+            widget = self.builder.get_object('label_icon')
             widget.configure(image=favicon)
             widget.image=favicon
+
+            image = ColorThief(requests.get(fi_url, stream=True).raw)
+            color = image.get_color(quality=1)
+            hexc = '#'
+            for n in color:
+                hexc = hexc + str(hex(n))[2:]
+            widget = self.builder.get_object('toplevel1')
+            widget.configure(background=hexc)
+
         except:
-            img = Image.open("kakadu.png")
+            img = Image.open("ui/kakadu.png")
             favicon = ImageTk.PhotoImage(img)
+            widget = self.builder.get_object('label_icon')
             widget.configure(image=favicon)
             widget.image=favicon
+            widget = self.builder.get_object('toplevel1')
+            widget.configure(background='#d8d043')
 
         # print("")
         # for i in meta_list:
@@ -283,8 +294,10 @@ class GuiApp:
         widget = self.builder.get_object('button_play')
         widget.configure(state="disabled")
 
-    def config(self):
-        self.stations.run()
+    def config(self, skip=None):
+        if skip == None:
+            self.clear_all()
+            self.stations.run()
         widget = self.builder.get_object('treeview1')
         for i in range(len(radios)):
             column_values = (
@@ -295,6 +308,10 @@ class GuiApp:
             parent = ""
             widget.insert(parent, tk.END, text=radios[i]["name"], values=column_values)
 
+        label = "Radio stations (" + str(len(radios)) + ")"
+        widget = self.builder.get_object('labelframe3')
+        widget.configure(text=label)
+
     def on_row_select(self, event=None):
         widget = self.builder.get_object('treeview1')
         sel = widget.selection()
@@ -304,6 +321,7 @@ class GuiApp:
             # print(values['text'])
             # print(values['values'][0])
             # print(values['values'][2])
+            sleep(1)
             self.play_uuid(values['values'][2])
 
     def play_uuid(self, radio_uuid):
@@ -337,8 +355,41 @@ class GuiApp:
         for item in widget.get_children():
             widget.delete(item)
 
-    def add_filter(self):
-        pass
+    def search_enter(self, event=None):
+        self.search()
+
+    def search(self):
+        self.clear_all()
+        r = 0
+        widget = self.builder.get_object('entry_search')
+        keys = widget.get().upper()
+        if keys == '':
+            self.config(skip=True)
+            return
+        keys = keys.replace(",", " ")
+        keys = keys.split()
+
+        widget = self.builder.get_object('treeview1')
+        for i in range(len(radios)):
+            name = radios[i]["name"].upper() + radios[i]["tags"].upper()
+            s = 0
+            for ik in keys:
+                if name.find(ik) >= 0:
+                    s += 1
+
+            if s > len(keys) - 1:
+                r += 1
+                column_values = (
+                    radios[i]["countrycode"],
+                    radios[i]["tags"],
+                    radios[i]["stationuuid"]
+                )
+                parent = ""
+                widget.insert(parent, tk.END, text=radios[i]["name"], values=column_values)
+
+        label = "Radio stations (" + str(r) + ")"
+        widget = self.builder.get_object('labelframe3')
+        widget.configure(text=label)
 
     def stationurl(self):
         self.dialog1.run()
