@@ -63,6 +63,59 @@
               </object>
             </child>
             <child>
+              <object class="ttk.Label" id="label_tags">
+                <layout manager="pack">
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Frame" id="frame7">
+                <property name="height">200</property>
+                <property name="width">200</property>
+                <layout manager="pack">
+                  <property name="side">top</property>
+                </layout>
+                <child>
+                  <object class="ttk.Label" id="label_codec">
+                    <property name="anchor">n</property>
+                    <property name="justify">center</property>
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label_bitrate">
+                    <property name="anchor">n</property>
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">PythonSimplified Code Jam 2022-08-15 Sound &amp; Audio</property>
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label_votes">
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label_clickcount">
+                    <layout manager="pack">
+                      <property name="ipadx">10</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
               <object class="ttk.Frame" id="frame6">
                 <property name="height">200</property>
                 <property name="width">200</property>
@@ -94,70 +147,6 @@
                   <object class="ttk.Label" id="label_language">
                     <property name="anchor">n</property>
                     <property name="justify">center</property>
-                    <layout manager="pack">
-                      <property name="ipadx">10</property>
-                      <property name="side">left</property>
-                    </layout>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="ttk.Label" id="label_tags">
-                <layout manager="pack">
-                  <property name="side">top</property>
-                </layout>
-              </object>
-            </child>
-            <child>
-              <object class="ttk.Frame" id="frame7">
-                <property name="height">200</property>
-                <property name="width">200</property>
-                <layout manager="pack">
-                  <property name="side">top</property>
-                </layout>
-                <child>
-                  <object class="ttk.Label" id="label_codec">
-                    <property name="anchor">n</property>
-                    <property name="justify">center</property>
-                    <property name="text" translatable="yes">Code Jam 2022-08-15</property>
-                    <layout manager="pack">
-                      <property name="ipadx">10</property>
-                      <property name="side">left</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="ttk.Label" id="label_bitrate">
-                    <property name="anchor">n</property>
-                    <property name="justify">center</property>
-                    <property name="text" translatable="yes">Sound &amp; Audio</property>
-                    <layout manager="pack">
-                      <property name="ipadx">10</property>
-                      <property name="side">left</property>
-                    </layout>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="ttk.Frame" id="frame8">
-                <property name="height">200</property>
-                <property name="width">200</property>
-                <layout manager="pack">
-                  <property name="side">top</property>
-                </layout>
-                <child>
-                  <object class="ttk.Label" id="label_votes">
-                    <property name="text" translatable="yes">PythonSimplified</property>
-                    <layout manager="pack">
-                      <property name="ipadx">10</property>
-                      <property name="side">left</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="ttk.Label" id="label_clickcount">
                     <layout manager="pack">
                       <property name="ipadx">10</property>
                       <property name="side">left</property>
@@ -206,6 +195,19 @@
                     <property name="text" translatable="yes">Station URL</property>
                     <layout manager="grid">
                       <property name="column">2</property>
+                      <property name="padx">5</property>
+                      <property name="pady">5</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Button" id="button_rb">
+                    <property name="command" type="command" cbtype="simple">open_radiobrowser</property>
+                    <property name="text" translatable="yes">RB</property>
+                    <property name="width">4</property>
+                    <layout manager="grid">
+                      <property name="column">3</property>
                       <property name="padx">5</property>
                       <property name="pady">5</property>
                       <property name="row">0</property>
@@ -300,7 +302,7 @@
             <child>
               <object class="ttk.Button" id="button_prev">
                 <property name="command" type="command" cbtype="simple">prev_station</property>
-                <property name="text" translatable="yes">Prev</property>
+                <property name="text" translatable="yes">&lt;&lt;&lt; Prev</property>
                 <layout manager="grid">
                   <property name="column">0</property>
                   <property name="padx">5</property>
@@ -312,7 +314,7 @@
             <child>
               <object class="ttk.Button" id="button_next">
                 <property name="command" type="command" cbtype="simple">next_station</property>
-                <property name="text" translatable="yes">Next</property>
+                <property name="text" translatable="yes">Next &gt;&gt;&gt;</property>
                 <layout manager="grid">
                   <property name="column">1</property>
                   <property name="padx">5</property>
@@ -388,6 +390,18 @@
                 <layout manager="grid">
                   <property name="column">1</property>
                   <property name="row">3</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Button" id="button_about">
+                <property name="command" type="command" cbtype="simple">open_about</property>
+                <property name="text" translatable="yes">About</property>
+                <layout manager="grid">
+                  <property name="column">0</property>
+                  <property name="padx">5</property>
+                  <property name="pady">5</property>
+                  <property name="row">4</property>
                 </layout>
               </object>
             </child>
@@ -625,6 +639,273 @@
                     </layout>
                   </object>
                 </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="pygubu.builder.widgets.dialog" id="dialog_about">
+    <property name="height">100</property>
+    <property name="modal">true</property>
+    <property name="resizable">none</property>
+    <property name="title" translatable="yes">About</property>
+    <property name="width">200</property>
+    <child>
+      <object class="ttk.Frame" id="frame3">
+        <property name="height">250</property>
+        <property name="padding">5</property>
+        <property name="width">400</property>
+        <layout manager="pack">
+          <property name="expand">true</property>
+          <property name="fill">both</property>
+        </layout>
+        <child>
+          <object class="ttk.Frame" id="Frame_1">
+            <property name="height">200</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="fill">both</property>
+              <property name="side">top</property>
+            </layout>
+            <child>
+              <object class="ttk.Label" id="logo">
+                <property name="anchor">e</property>
+                <property name="background">#ffffff</property>
+                <property name="borderwidth">3</property>
+                <property name="font">Sans 18 bold</property>
+                <property name="image">kakadu_crop.png</property>
+                <property name="relief">sunken</property>
+                <property name="text" translatable="yes">pygubu</property>
+                <layout manager="pack">
+                  <property name="padx">5</property>
+                  <property name="pady">5 20</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Frame" id="frame4">
+                <property name="height">200</property>
+                <property name="width">200</property>
+                <layout manager="pack">
+                  <property name="side">top</property>
+                </layout>
+                <child>
+                  <object class="ttk.Frame" id="frame8">
+                    <property name="height">200</property>
+                    <property name="width">200</property>
+                    <layout manager="pack">
+                      <property name="expand">true</property>
+                      <property name="side">top</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Label" id="label1">
+                        <property name="font">{sans} 20 {bold}</property>
+                        <property name="text" translatable="yes">KakaduFM</property>
+                        <layout manager="pack">
+                          <property name="side">top</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="label3">
+                        <property name="anchor">n</property>
+                        <property name="font">{Sans} 10 {}</property>
+                        <property name="justify">center</property>
+                        <property name="text" translatable="yes">Just another player for internet radio stations,
+using the www.radio-browser.info database.</property>
+                        <layout manager="pack">
+                          <property name="ipadx">25</property>
+                          <property name="pady">5</property>
+                          <property name="side">top</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="designer_version">
+                        <property name="font">{sans} 10 {}</property>
+                        <property name="text" translatable="yes">Version: development</property>
+                        <layout manager="pack">
+                          <property name="side">top</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Frame" id="frame9">
+                    <property name="height">200</property>
+                    <property name="width">200</property>
+                    <layout manager="pack">
+                      <property name="side">top</property>
+                    </layout>
+                    <child>
+                      <object class="ttk.Label" id="label7">
+                        <property name="font">{sans} 10 {}</property>
+                        <property name="text" translatable="yes">License:</property>
+                        <layout manager="pack">
+                          <property name="side">left</property>
+                        </layout>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ttk.Label" id="licence_link">
+                        <property name="anchor">center</property>
+                        <property name="cursor">hand2</property>
+                        <property name="font">{Sans} 10 {}</property>
+                        <property name="foreground">#143ee3</property>
+                        <property name="text" translatable="yes">GPL3</property>
+                        <bind sequence="&lt;Button-1&gt;" handler="about_click" add="" />
+                        <layout manager="pack">
+                          <property name="padx">5 0</property>
+                          <property name="side">left</property>
+                        </layout>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Frame" id="frame13">
+                <property name="height">200</property>
+                <property name="width">200</property>
+                <layout manager="pack">
+                  <property name="fill">both</property>
+                  <property name="side">top</property>
+                </layout>
+                <child>
+                  <object class="ttk.Label" id="label4">
+                    <property name="font">{sans} 11 {bold}</property>
+                    <property name="text" translatable="yes">Associated projects:</property>
+                    <layout manager="pack">
+                      <property name="pady">20 0</property>
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label14">
+                    <property name="cursor">hand2</property>
+                    <property name="font">{sans} 10 {}</property>
+                    <property name="foreground">#143ee3</property>
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">https://www.radio-browser.info</property>
+                    <property name="wraplength">420</property>
+                    <bind sequence="&lt;Button-1&gt;" handler="about_click" add="" />
+                    <layout manager="pack">
+                      <property name="pady">2</property>
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label5">
+                    <property name="cursor">hand2</property>
+                    <property name="font">{sans} 10 {}</property>
+                    <property name="foreground">#143ee3</property>
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">https://pypi.org/project/python-vlc</property>
+                    <property name="wraplength">420</property>
+                    <bind sequence="&lt;Button-1&gt;" handler="about_click" add="" />
+                    <layout manager="pack">
+                      <property name="pady">2</property>
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label8">
+                    <property name="cursor">hand2</property>
+                    <property name="font">{sans} 10 {}</property>
+                    <property name="foreground">#143ee3</property>
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">https://github.com/andreztz/pyradios</property>
+                    <property name="wraplength">420</property>
+                    <bind sequence="&lt;Button-1&gt;" handler="about_click" add="" />
+                    <layout manager="pack">
+                      <property name="pady">2</property>
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label10">
+                    <property name="cursor">hand2</property>
+                    <property name="font">{sans} 10 {}</property>
+                    <property name="foreground">#143ee3</property>
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">https://pypi.org/project/Pillow</property>
+                    <property name="wraplength">420</property>
+                    <bind sequence="&lt;Button-1&gt;" handler="about_click" add="" />
+                    <layout manager="pack">
+                      <property name="pady">2</property>
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Label" id="label13">
+                    <property name="cursor">hand2</property>
+                    <property name="font">{sans} 10 {}</property>
+                    <property name="foreground">#143ee3</property>
+                    <property name="justify">center</property>
+                    <property name="text" translatable="yes">https://pypi.org/project/requests</property>
+                    <property name="wraplength">420</property>
+                    <bind sequence="&lt;Button-1&gt;" handler="about_click" add="" />
+                    <layout manager="pack">
+                      <property name="pady">2</property>
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Frame" id="frame16">
+                <property name="height">200</property>
+                <property name="width">200</property>
+                <layout manager="pack">
+                  <property name="pady">10 0</property>
+                  <property name="side">top</property>
+                </layout>
+                <child>
+                  <object class="ttk.Label" id="label9">
+                    <property name="anchor">center</property>
+                    <property name="cursor">hand2</property>
+                    <property name="font">{Sans} 10 {}</property>
+                    <property name="foreground">#143ee3</property>
+                    <property name="text" translatable="yes">More info.</property>
+                    <bind sequence="&lt;Button-1&gt;" handler="about_click" add="" />
+                    <layout manager="pack">
+                      <property name="pady">10 0</property>
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Frame" id="bottom">
+            <property name="height" />
+            <property name="padding">0 10 0 0</property>
+            <property name="width" />
+            <layout manager="pack">
+              <property name="fill">x</property>
+            </layout>
+            <child>
+              <object class="ttk.Button" id="close_btn">
+                <property name="command" type="command" cbtype="simple">about_close</property>
+                <property name="text" translatable="yes">Close</property>
+                <layout manager="pack">
+                  <property name="padx">5</property>
+                  <property name="pady">5</property>
+                  <property name="side">right</property>
+                </layout>
               </object>
             </child>
           </object>
