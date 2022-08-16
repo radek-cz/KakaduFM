@@ -7,6 +7,13 @@ Requirements:
 - Windows 10 (tested)
 - Python 3.10+ https://www.python.org/downloads/
 
+Associated projects:
+- https://www.radio-browser.info
+- https://pypi.org/project/python-vlc
+- https://github.com/andreztz/pyradios
+- https://pypi.org/project/Pillow
+- https://pypi.org/project/requests
+
 Installation:
 - download and unpack https://github.com/morgor/KakaduFM/archive/refs/heads/main.zip
 - run treminal/console (cmd.exe or Power Shell)
