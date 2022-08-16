@@ -8,7 +8,6 @@ Requirements:
 - Python 3.10+ https://www.python.org/downloads/
 
 Associated projects:
-- https://www.radio-browser.info
 - https://pypi.org/project/python-vlc
 - https://pypi.org/project/pyradios
 - https://pypi.org/project/Pillow
