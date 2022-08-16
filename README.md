@@ -25,6 +25,6 @@ Download dependences:
 
 Running:
 
-    python KakaduFM.pyw
+    python kakadufm.pyw
 
 <img align="right" src="https://github.com/morgor/KakaduFM/raw/main/screenshot_2.png" alt="KakaduFM screenshot 2">
