@@ -1,5 +1,5 @@
 # KakaduFM
-<img align="right" src="https://github.com/morgor/KakaduFM/raw/main/screenshot_1.png" alt="KakaduFM screenshot 1">
+<img align="right" src="https://github.com/morgor/KakaduFM/raw/main/img/screenshot_1.png" alt="KakaduFM screenshot 1">
 
 Another player for internet radio stations, using the database https://www.radio-browser.info/.
 
@@ -21,10 +21,10 @@ Installation:
 
 Download dependences:
 
-    pip install -r requirements.txt
+    pip install -r setup\requirements.txt
 
 Running:
 
     python kakadufm.pyw
 
-<img align="right" src="https://github.com/morgor/KakaduFM/raw/main/screenshot_2.png" alt="KakaduFM screenshot 2">
+<img align="right" src="https://github.com/morgor/KakaduFM/raw/main/img/screenshot_2.png" alt="KakaduFM screenshot 2">
