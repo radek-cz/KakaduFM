@@ -16,15 +16,6 @@ Associated projects:
 
 Installation:
 - download and unpack https://github.com/morgor/KakaduFM/archive/refs/heads/main.zip
-- run treminal/console (cmd.exe or Power Shell)
-- go to directory (use 'cd' command) 'KakaduFM-main' (You can rename it)
-
-Download dependences:
-
-    pip install -r setup\requirements.txt
-
-Running:
-
-    python kakadufm.pyw
+- run start.bat
 
 <img align="right" src="https://github.com/morgor/KakaduFM/raw/main/img/screenshot_2.png" alt="KakaduFM screenshot 2">
