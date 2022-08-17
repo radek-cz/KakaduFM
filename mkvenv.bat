@@ -43,14 +43,13 @@ set _fBWhite=[97m
 set _bBWhite=[107m
 set _RESET=[0m
 
-set TERM=ANSI
+set download_dir=%USERPROFILE%\Downloads\
 set /A test = 0
 cls
 
 echo %_RESET%%_bRed%%_fBWhite%
 echo  PYTHON DETECTOR 
 echo %_RESET%
-timeout 1 >NUL
 
 ::Testing Windows registry  
 reg query "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Python" 2>NUL >NUL
@@ -60,7 +59,6 @@ if %ERRORLEVEL% EQU 0 (
 ) else (
 	echo HKLM WOW6432Node\Python %_fRed%no exist! %_RESET%
 )
-timeout 1 >NUL
 
 reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Python\PythonCore" 2>NUL >NUL
 if %ERRORLEVEL% EQU 0 (
@@ -69,7 +67,6 @@ if %ERRORLEVEL% EQU 0 (
 ) else (
 	echo HKLM PythonCore %_fRed%no exist! %_RESET%
 )
-timeout 1 >NUL
 
 reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\.pyw" 2>NUL >NUL
 if %ERRORLEVEL% EQU 0 (
@@ -78,7 +75,6 @@ if %ERRORLEVEL% EQU 0 (
 ) else (
 	echo HKLM .pyw class %_fRed%no exist! %_RESET%
 )
-timeout 1 >NUL
 
 reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\.py" 2>NUL >NUL
 if %ERRORLEVEL% EQU 0 (
@@ -87,19 +83,19 @@ if %ERRORLEVEL% EQU 0 (
 ) else (
 	echo HKLM .py class %_fRed%no exist! %_RESET%
 )
-timeout 1 >NUL
 echo:
 
 :: Check - is all test ok
 if %test% EQU 4 (
-	echo %_bRed%%_fBWhite% Succes! Python is installed %_RESET%
+	echo %_bRed%%_fBWhite% Succes! Python is installed! %_RESET%
 ) else (
-	echo %_fRed%Please install Python! %_RESET%
-	echo Download from %_fBlue%https://www.python.org/downloads/%_RESET%
-	timeout 10
-	exit /B
+	echo %_fRed% Python installer %_RESET%
+	echo %_fBlue% https://www.python.org/downloads/ %_RESET%
+    bitsadmin /transfer PYTHON /download /priority FOREGROUND %python_url% %download_dir%%python_file%
+	echo:
+	echo Start Python instalator: %python_file%
+	%download_dir%%python_file% /passive InstallAllUsers=1 PrependPath=1 CompileAll=1
 )
-timeout 1 >NUL
 echo:
 
 :: Create venv and download requirements
@@ -115,7 +111,6 @@ if exist requirements.txt (
 	echo %_fRed%requirements.txt file not exist!%_RESET%
 	exit /B
 )
-timeout 1 >NUL
 echo:
 
 :: Finaly start app
