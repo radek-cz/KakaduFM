@@ -58,7 +58,7 @@ except:
 instance = vlc.Instance('--input-repeat=-1', '--fullscreen')
 player = instance.media_player_new()
 player.audio_set_volume(100)
-
+player.audio_set_mute(False)
 
 class GuiApp:
     def __init__(self, master=None):

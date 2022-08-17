@@ -1,14 +1,12 @@
-@echo off
+@echo off&setlocal
+:: start_kakadufm.bat
+
+set app=kakadufm.pyw
+
+:: If venv exist - start app else run tests and make venv
 if exist venv\ (
-  call venv\Scripts\activate.bat
-  start venv\Scripts\pythonw.exe kakadufm.pyw
+	call venv\Scripts\activate.bat
+	start venv\Scripts\pythonw.exe %app%
 ) else (
-  echo Create venv...
-  python -m venv venv
-  echo Upgrade PIP and install requirements...
-  call venv\Scripts\activate.bat
-  venv\Scripts\python.exe -m pip install --upgrade pip
-  pip install -r requirements.txt
-  timeout 3
-  start venv\Scripts\pythonw.exe kakadufm.pyw
+	call mkvenv.bat
 )
