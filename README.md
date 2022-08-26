@@ -15,6 +15,7 @@ Associated projects:
 - https://pypi.org/project/requests
 
 Installation:
+- download and instal VLC - https://www.videolan.org/vlc/index.pl.html
 - download and unpack https://github.com/morgor/KakaduFM/archive/refs/heads/main.zip
 - run start.bat
 
