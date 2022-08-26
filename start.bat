@@ -28,6 +28,6 @@ echo:
 
 :: Finaly start app
 echo Starting
-start venv\Scripts\pythonw.exe %app%
+start venv\Scripts\python.exe %app%
 timeout 5 >NUL
 )
