@@ -129,7 +129,7 @@ class GuiApp:
             txt = radios[self.rid][i]
             if str(type(txt)) == "<class 'str'>":
                 txt = txt.strip()
-                txt = re.sub(r"[\n\t]*", "", txt)
+                txt = self.name_trim(txt)
             if str(type(txt)) == "<class 'str'>" and len(txt) > MAXL_NAME and i == 'name':
                 txt = txt[:MAXL_NAME] + '...'
             if str(type(txt)) == "<class 'str'>" and len(txt) > (2*MAXL_NAME) and i == 'tags':
@@ -306,11 +306,18 @@ class GuiApp:
                 radios[i]["stationuuid"]
             )
             parent = ""
-            widget.insert(parent, tk.END, text=radios[i]["name"], values=column_values)
+            txt = self.name_trim(radios[i]["name"])
+            widget.insert(parent, tk.END, text=txt, values=column_values)
 
         label = "Radio stations (" + str(len(radios)) + ")"
         widget = self.builder.get_object('labelframe3')
         widget.configure(text=label)
+
+    def name_trim(self, txt):
+        txt = re.sub(r"_", " ", txt)
+        txt = txt.strip()
+        txt = re.sub(r"[\n\t]*", "", txt)
+        return txt
 
     def on_row_select(self, event=None):
         widget = self.builder.get_object('treeview1')
@@ -385,7 +392,11 @@ class GuiApp:
                     radios[i]["stationuuid"]
                 )
                 parent = ""
-                widget.insert(parent, tk.END, text=radios[i]["name"], values=column_values)
+                # txt = radios[i]["name"]
+                # txt = txt.strip()
+                # txt = re.sub(r"[\n\t]*", "", txt)
+                txt = self.name_trim(radios[i]["name"])
+                widget.insert(parent, tk.END, text=txt, values=column_values)
 
         label = "Radio stations (" + str(r) + ")"
         widget = self.builder.get_object('labelframe3')
