@@ -10,5 +10,24 @@ if exist venv\ (
 	call venv\Scripts\activate.bat
 	start venv\Scripts\pythonw.exe %app%
 ) else (
-	call mkvenv.bat
+
+:: Create venv and download requirements
+echo Create venv...
+python -m venv venv
+echo Upgrade PIP and install requirements...
+if exist requirements.txt (
+	call venv\Scripts\activate.bat
+	venv\Scripts\python.exe -m pip install --upgrade pip
+	pip install -r requirements.txt
+) else (
+	echo:
+	echo requirements.txt file not exist!
+	exit /B
+)
+echo:
+
+:: Finaly start app
+echo Starting
+start venv\Scripts\pythonw.exe %app%
+timeout 5 >NUL
 )
