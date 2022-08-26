@@ -7,6 +7,7 @@ import webbrowser
 import pathlib
 import subprocess
 import urllib.parse
+import site
 import tkinter as tk
 from tkinter import messagebox
 from datetime import datetime
@@ -37,6 +38,22 @@ except:
     print("Install VLC first!")
     print("Download it from https://www.videolan.org/vlc/")
     messagebox.showerror("Dependences", "Install VLC first!\nDownload it from https://www.videolan.org/vlc/")
+    quit()
+
+def is_venv():
+##    print("sys.base_prefix:", sys.base_prefix)
+##    print("sys.prefix:", sys.prefix)
+##    print("ENABLE_USER_SITE", site.ENABLE_USER_SITE)
+##    print("PREFIXES", site.PREFIXES)
+##    print("USER_BASE", site.USER_BASE)
+##    print("USER_SITE", site.USER_SITE)
+    return (hasattr(sys, 'real_prefix') or
+            (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix))
+
+if is_venv():
+    pass
+else:
+    messagebox.showerror("KakaduFM", "You running outside venv!!\n\nRun 'start.bat'.")
     quit()
 
 ISO_COUNTRY_CODE = "PL"
@@ -550,7 +567,6 @@ class GuiApp:
             self.fade_down()
             player.stop()
             self.mainwindow.destroy()
-
 
 if __name__ == "__main__":
     app = GuiApp()
