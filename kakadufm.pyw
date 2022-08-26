@@ -1,22 +1,35 @@
-import vlc
 import random
 import time
 import calendar
 import re
-from io import BytesIO
+import sys
+import webbrowser
+import pathlib
+import subprocess
+import urllib.parse
+import tkinter as tk
+from tkinter import messagebox
 from datetime import datetime
 from time import sleep
-from pyradios import RadioBrowser
-from PIL import Image, ImageTk
-from colorthief import ColorThief
-from tkinter import messagebox
-import tkinter as tk
-import webbrowser
-import urllib.parse
-import pathlib
-import pygubu
-import requests
+from io import BytesIO
 
+try:
+    import pygubu
+    import requests
+    from pyradios import RadioBrowser
+    from PIL import Image, ImageTk
+    from colorthief import ColorThief
+except:
+    subprocess.call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+    quit()
+
+try:
+    import vlc
+except:
+    print("Install VLC first!")
+    print("Download it from https://www.videolan.org/vlc/")
+    messagebox.showerror("Dependences", "Install VLC first!\nDownload it from https://www.videolan.org/vlc/")
+    quit()
 
 ISO_COUNTRY_CODE = "PL"
 PROJECT_PATH = pathlib.Path(__file__).parent
