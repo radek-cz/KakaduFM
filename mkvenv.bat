@@ -67,30 +67,17 @@ if %ERRORLEVEL% EQU 0 (
 ) else (
 	echo HKLM PythonCore %_fRed%no exist! %_RESET%
 )
-
-reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\.pyw" 2>NUL >NUL
-if %ERRORLEVEL% EQU 0 (
-	set /A test = %test%+1
-	echo HKLM .pyw class %_fGreen%detected%_RESET%
-) else (
-	echo HKLM .pyw class %_fRed%no exist! %_RESET%
-)
-
-reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\.py" 2>NUL >NUL
-if %ERRORLEVEL% EQU 0 (
-	set /A test = %test%+1
-	echo HKLM .py class %_fGreen%detected%_RESET%
-) else (
-	echo HKLM .py class %_fRed%no exist! %_RESET%
-)
+::reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\.pyw" 2>NUL >NUL
+::reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\.py" 2>NUL >NUL
 echo:
 
 :: Check - is all test ok
-if %test% EQU 4 (
+if %test% GTR 0 (
 	echo %_bRed%%_fBWhite% Succes! Python is installed! %_RESET%
 ) else (
 	echo %_fRed% Python installer %_RESET%
 	echo %_fBlue% https://www.python.org/downloads/ %_RESET%
+	timeout 3 >NUL
     bitsadmin /transfer PYTHON /download /priority FOREGROUND %python_url% %download_dir%%python_file%
 	echo:
 	echo Start Python instalator: %python_file%
