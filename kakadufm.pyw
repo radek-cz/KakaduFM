@@ -30,7 +30,11 @@ except:
     root.update()
     subprocess.call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
     root.destroy()
-    quit()
+    import pygubu
+    import requests
+    from pyradios import RadioBrowser
+    from PIL import Image, ImageTk
+    from colorthief import ColorThief
 
 try:
     import vlc
