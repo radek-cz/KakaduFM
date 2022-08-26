@@ -20,7 +20,15 @@ try:
     from PIL import Image, ImageTk
     from colorthief import ColorThief
 except:
+    root = tk.Tk()
+    root.configure(height=100, width=200)
+    root.title("KakaduFM")
+    root.label11 = tk.Label(root)
+    root.label11.configure(font="{Arial} 16 {}", text="Wait for downloading requirements...")
+    root.label11.pack(padx=30, pady=30, side="top")
+    root.update()
     subprocess.call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+    root.destroy()
     quit()
 
 try:
@@ -45,7 +53,17 @@ SEARCH_ENGINE = SEARCH_ENGINE4
 MAXL_NAME = 26
 
 rb = RadioBrowser()
+
+root = tk.Tk()
+root.configure(height=100, width=200)
+root.title("KakaduFM")
+root.label11 = tk.Label(root)
+root.label11.configure(font="{Arial} 16 {}", text="Wait for downloading stations...")
+root.label11.pack(padx=30, pady=30, side="top")
+root.update()
 radios = rb.stations()
+root.destroy()
+
 # radios = rb.search(countrycode=ISO_COUNTRY_CODE)
 
 # FIX some .m3u and .pls not playing on vlc.py
