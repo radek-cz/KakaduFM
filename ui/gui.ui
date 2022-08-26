@@ -3,8 +3,8 @@
   <object class="tk.Toplevel" id="toplevel1">
     <property name="background">#d8d043</property>
     <property name="borderwidth">9</property>
-    <property name="iconbitmap">kakadu_crop.png</property>
-    <property name="iconphoto">kakadu_crop.png</property>
+    <property name="iconbitmap">radio_6876.png</property>
+    <property name="iconphoto">radio_6876.png</property>
     <property name="resizable">none</property>
     <property name="title" translatable="yes">KakaduFM</property>
     <child>
@@ -371,7 +371,7 @@
             <child>
               <object class="ttk.Button" id="button_config">
                 <property name="command" type="command" cbtype="simple">config</property>
-                <property name="text" translatable="yes">List</property>
+                <property name="text" translatable="yes">Stations</property>
                 <layout manager="grid">
                   <property name="column">3</property>
                   <property name="padx">5</property>
@@ -488,22 +488,12 @@
           <property name="side">top</property>
         </layout>
         <child>
-          <object class="ttk.Separator" id="separator1">
-            <property name="orient">horizontal</property>
-            <layout manager="pack">
-              <property name="fill">x</property>
-              <property name="pady">10</property>
-              <property name="side">top</property>
-            </layout>
-          </object>
-        </child>
-        <child>
           <object class="ttk.Entry" id="entry_song">
             <property name="justify">center</property>
             <property name="width">60</property>
             <layout manager="pack">
               <property name="padx">20</property>
-              <property name="pady">5</property>
+              <property name="pady">15</property>
               <property name="side">top</property>
             </layout>
           </object>
@@ -513,16 +503,7 @@
             <property name="command" type="command" cbtype="simple">search_song</property>
             <property name="text" translatable="yes">Search in Internet</property>
             <layout manager="pack">
-              <property name="side">top</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="ttk.Separator" id="separator2">
-            <property name="orient">horizontal</property>
-            <layout manager="pack">
-              <property name="fill">x</property>
-              <property name="pady">10</property>
+              <property name="pady">5 10</property>
               <property name="side">top</property>
             </layout>
           </object>
@@ -994,6 +975,455 @@ using the www.radio-browser.info database.</property>
                 </layout>
               </object>
             </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="pygubu.builder.widgets.dialog" id="dialog3">
+    <property name="height">100</property>
+    <property name="width">200</property>
+    <child>
+      <object class="ttk.Labelframe" id="labelframe4">
+        <property name="labelanchor">n</property>
+        <property name="relief">flat</property>
+        <property name="text" translatable="yes">Info</property>
+        <layout manager="pack">
+          <property name="expand">true</property>
+          <property name="fill">both</property>
+          <property name="ipadx">8</property>
+          <property name="ipady">5</property>
+          <property name="padx">5</property>
+          <property name="pady">5 5</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="tk.Text" id="text1">
+            <property name="background">#000000</property>
+            <property name="borderwidth">0</property>
+            <property name="font">{Courier New} 12 {}</property>
+            <property name="foreground">#ff8000</property>
+            <property name="height">12</property>
+            <property name="highlightbackground">#c0c0c0</property>
+            <property name="highlightcolor">#ff8000</property>
+            <property name="relief">flat</property>
+            <property name="selectbackground">#000000</property>
+            <property name="selectforeground">#ff8000</property>
+            <property name="width">50</property>
+            <layout manager="pack">
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="button7">
+            <property name="text" translatable="yes">CLOSE</property>
+            <layout manager="pack">
+              <property name="anchor">e</property>
+              <property name="ipadx">10</property>
+              <property name="ipady">5</property>
+              <property name="padx">7</property>
+              <property name="pady">5 0</property>
+              <property name="side">right</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="button6">
+            <property name="text" translatable="yes">COPY</property>
+            <layout manager="pack">
+              <property name="anchor">e</property>
+              <property name="ipadx">10</property>
+              <property name="ipady">5</property>
+              <property name="padx">5</property>
+              <property name="pady">5 0</property>
+              <property name="side">right</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="pygubu.builder.widgets.dialog" id="file_selector">
+    <property name="background">#d9d9d9</property>
+    <property name="height">400</property>
+    <property name="minsize">400|600</property>
+    <property name="resizable">both</property>
+    <property name="title" translatable="yes">Select File to open</property>
+    <property name="width">600</property>
+    <child>
+      <object class="ttk.Frame" id="frame24">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="expand">false</property>
+          <property name="fill">x</property>
+          <property name="padx">5</property>
+          <property name="pady">5</property>
+          <property name="side">bottom</property>
+        </layout>
+        <child>
+          <object class="ttk.Button" id="button8">
+            <property name="text" translatable="yes">OPEN</property>
+            <layout manager="pack">
+              <property name="ipadx">10</property>
+              <property name="ipady">5</property>
+              <property name="padx">0 20</property>
+              <property name="side">left</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="button9">
+            <property name="text" translatable="yes">VOLUMES</property>
+            <layout manager="pack">
+              <property name="ipadx">10</property>
+              <property name="ipady">5</property>
+              <property name="padx">0 20</property>
+              <property name="side">left</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="button10">
+            <property name="text" translatable="yes">PARENT</property>
+            <layout manager="pack">
+              <property name="ipadx">10</property>
+              <property name="ipady">5</property>
+              <property name="padx">0 20</property>
+              <property name="side">left</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="button11">
+            <property name="text" translatable="yes">CANCLE</property>
+            <layout manager="pack">
+              <property name="ipadx">10</property>
+              <property name="ipady">5</property>
+              <property name="side">right</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="frame22">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="expand">false</property>
+          <property name="fill">x</property>
+          <property name="padx">5</property>
+          <property name="pady">5</property>
+          <property name="side">bottom</property>
+        </layout>
+        <child>
+          <object class="ttk.Frame" id="frame26">
+            <property name="height">200</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="side">left</property>
+            </layout>
+            <child>
+              <object class="ttk.Label" id="label32">
+                <property name="anchor">e</property>
+                <property name="justify">right</property>
+                <property name="text" translatable="yes">Pattern</property>
+                <property name="width">10</property>
+                <layout manager="pack">
+                  <property name="padx">5</property>
+                  <property name="pady">5</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Label" id="label33">
+                <property name="anchor">e</property>
+                <property name="justify">right</property>
+                <property name="text" translatable="yes">Drawer</property>
+                <property name="width">10</property>
+                <layout manager="pack">
+                  <property name="padx">5</property>
+                  <property name="pady">5</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Label" id="label34">
+                <property name="anchor">e</property>
+                <property name="justify">right</property>
+                <property name="text" translatable="yes">File</property>
+                <property name="width">10</property>
+                <layout manager="pack">
+                  <property name="padx">5</property>
+                  <property name="pady">5</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Frame" id="frame27">
+            <property name="height">200</property>
+            <property name="width">200</property>
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="fill">x</property>
+              <property name="side">right</property>
+            </layout>
+            <child>
+              <object class="ttk.Entry" id="entry1">
+                <layout manager="pack">
+                  <property name="expand">true</property>
+                  <property name="fill">x</property>
+                  <property name="pady">5</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Entry" id="entry2">
+                <layout manager="pack">
+                  <property name="expand">true</property>
+                  <property name="fill">x</property>
+                  <property name="pady">5</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Entry" id="entry3">
+                <layout manager="pack">
+                  <property name="expand">true</property>
+                  <property name="fill">x</property>
+                  <property name="pady">5</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="frame25">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="expand">true</property>
+          <property name="fill">both</property>
+          <property name="padx">5</property>
+          <property name="pady">5</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="pygubu.builder.widgets.scrolledframe" id="scrolledframe2">
+            <property name="scrolltype">vertical</property>
+            <property name="usemousewheel">false</property>
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="fill">both</property>
+              <property name="side">top</property>
+            </layout>
+            <child>
+              <object class="ttk.Treeview" id="treeview3">
+                <property name="selectmode">extended</property>
+                <layout manager="pack">
+                  <property name="expand">true</property>
+                  <property name="fill">both</property>
+                  <property name="side">top</property>
+                </layout>
+                <child>
+                  <object class="ttk.Treeview.Column" id="column6">
+                    <property name="column_anchor">w</property>
+                    <property name="heading_anchor">w</property>
+                    <property name="minwidth">20</property>
+                    <property name="stretch">true</property>
+                    <property name="text" translatable="yes">column6</property>
+                    <property name="tree_column">false</property>
+                    <property name="visible">true</property>
+                    <property name="width">20</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Treeview.Column" id="column7">
+                    <property name="column_anchor">w</property>
+                    <property name="heading_anchor">w</property>
+                    <property name="minwidth">20</property>
+                    <property name="stretch">true</property>
+                    <property name="text" translatable="yes">column7</property>
+                    <property name="tree_column">false</property>
+                    <property name="visible">true</property>
+                    <property name="width">20</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Treeview.Column" id="column8">
+                    <property name="column_anchor">w</property>
+                    <property name="heading_anchor">w</property>
+                    <property name="minwidth">20</property>
+                    <property name="stretch">true</property>
+                    <property name="text" translatable="yes">column8</property>
+                    <property name="tree_column">false</property>
+                    <property name="visible">true</property>
+                    <property name="width">20</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Treeview.Column" id="column9">
+                    <property name="column_anchor">w</property>
+                    <property name="heading_anchor">w</property>
+                    <property name="minwidth">20</property>
+                    <property name="stretch">true</property>
+                    <property name="text" translatable="yes">column9</property>
+                    <property name="tree_column">false</property>
+                    <property name="visible">true</property>
+                    <property name="width">20</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="tk.Toplevel" id="guru">
+    <property name="background">#000000</property>
+    <property name="geometry">800x600</property>
+    <property name="height">200</property>
+    <property name="highlightbackground">#ff0000</property>
+    <property name="highlightcolor">#000000</property>
+    <property name="minsize">900|150</property>
+    <property name="overrideredirect">True</property>
+    <property name="padx">10</property>
+    <property name="resizable">none</property>
+    <property name="title" translatable="yes">Guru Mediation</property>
+    <property name="width">200</property>
+    <child>
+      <object class="tk.Frame" id="guru_frame1">
+        <property name="background">#000000</property>
+        <property name="height">200</property>
+        <property name="highlightbackground">#ff0000</property>
+        <property name="highlightthickness">10</property>
+        <property name="pady">10</property>
+        <property name="takefocus">false</property>
+        <property name="width">200</property>
+        <bind sequence="&lt;ButtonPress&gt;" handler="callback" add="" />
+        <layout manager="pack">
+          <property name="anchor">n</property>
+          <property name="fill">x</property>
+          <property name="pady">15</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="ttk.Label" id="guru_label1">
+            <property name="background">#000000</property>
+            <property name="font">{Courier New} 16 {bold}</property>
+            <property name="foreground">#ff0000</property>
+            <property name="text" translatable="yes">Software Failure.  Press left mouse button to continue.</property>
+            <layout manager="pack">
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="guru_label2">
+            <property name="background">#000000</property>
+            <property name="font">{Courier New} 16 {bold}</property>
+            <property name="foreground">#ff0000</property>
+            <property name="text" translatable="yes">Guru Mediation #81000005.48454C50</property>
+            <layout manager="pack">
+              <property name="pady">3 0</property>
+              <property name="side">bottom</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Frame" id="guru_frame2">
+        <property name="background">#000000</property>
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="expand">true</property>
+          <property name="fill">both</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="tk.Text" id="guru_text1">
+            <property name="background">#000000</property>
+            <property name="cursor">arrow</property>
+            <property name="font">{Courier New} 12 {bold}</property>
+            <property name="foreground">#ff0000</property>
+            <property name="height">10</property>
+            <property name="highlightbackground">#000000</property>
+            <property name="highlightcolor">#ff0000</property>
+            <property name="insertbackground">#000000</property>
+            <property name="relief">flat</property>
+            <property name="selectbackground">#000000</property>
+            <property name="selectforeground">#ff0000</property>
+            <property name="state">disabled</property>
+            <property name="takefocus">false</property>
+            <property name="undo">false</property>
+            <property name="width">50</property>
+            <property name="wrap">word</property>
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="fill">both</property>
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Frame" id="guru_frame3">
+        <property name="background">#000000</property>
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="tk.Button" id="guru_button1">
+            <property name="activebackground">#3c3c3c</property>
+            <property name="activeforeground">#ff0000</property>
+            <property name="background">#1e1e1e</property>
+            <property name="borderwidth">0</property>
+            <property name="font">{Courier New} 16 {bold}</property>
+            <property name="foreground">#ff0000</property>
+            <property name="relief">flat</property>
+            <property name="text" translatable="yes">Copy to clipboard</property>
+            <layout manager="pack">
+              <property name="ipadx">10</property>
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">left</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Button" id="guru_button2">
+            <property name="activebackground">#3c3c3c</property>
+            <property name="activeforeground">#ff0000</property>
+            <property name="background">#1e1e1e</property>
+            <property name="borderwidth">0</property>
+            <property name="font">{Courier New} 16 {bold}</property>
+            <property name="foreground">#ff0000</property>
+            <property name="relief">flat</property>
+            <property name="text" translatable="yes">Save to file</property>
+            <layout manager="pack">
+              <property name="ipadx">10</property>
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">right</property>
+            </layout>
           </object>
         </child>
       </object>
