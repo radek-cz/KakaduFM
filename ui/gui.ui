@@ -1327,6 +1327,7 @@ using the www.radio-browser.info database.</property>
             <property name="foreground">#ff0000</property>
             <property name="text" translatable="yes">Software Failure.  Press left mouse button to continue.</property>
             <layout manager="pack">
+              <property name="padx">10</property>
               <property name="side">top</property>
             </layout>
           </object>
@@ -1426,6 +1427,22 @@ using the www.radio-browser.info database.</property>
             </layout>
           </object>
         </child>
+      </object>
+    </child>
+  </object>
+  <object class="pygubu.builder.widgets.dialog" id="dialog_wait">
+    <property name="height">100</property>
+    <property name="title" translatable="yes">KakaduFM</property>
+    <property name="width">200</property>
+    <child>
+      <object class="tk.Label" id="label12">
+        <property name="font">{Arial} 20 {}</property>
+        <property name="text" translatable="yes">Wait for downloading...</property>
+        <layout manager="pack">
+          <property name="padx">20</property>
+          <property name="pady">20</property>
+          <property name="side">top</property>
+        </layout>
       </object>
     </child>
   </object>
